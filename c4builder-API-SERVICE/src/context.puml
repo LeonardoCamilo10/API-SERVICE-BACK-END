@@ -3,7 +3,7 @@
 
 LAYOUT_WITH_LEGEND()
 
-Person(client, "Client", "A customer of the site, who wants to request a service.")
+Person(client, "Customer", "A customer of the site, who wants to request a service.")
 Person(entrepreneur, "Entrepreneur", "An entrepreneur, who wants to add a new service or respond to customer requests.")
 System(ibs, "Working Service System", "Allows customers to view available services and communicate with the entrepreneur.")
 

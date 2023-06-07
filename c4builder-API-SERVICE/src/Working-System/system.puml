@@ -1,0 +1,21 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(pbc, "User", "A user (customer or entrepreneur), with access to the working website.")
+System_Boundary(ibs, "Working System") {
+    Container(wa, "Web Application", "HTML, CSS and JavaScript", "Deliver the static content and single page application of Working.")
+    Container(spa, "Single Page Application", "javascript and its frameworks", "Provides all the working system functionality to customers via their web browser.")
+    Container(db, "Database", "Relational Database Schema - PostgreSQL", "Stores user registration information, hashed authentication credentials, access logs, etc.")
+    Container(api, "API Application", "Node.js and TypeScript", "Provides working system functionality via a JSON/HTTP API.")
+
+    Rel(api, db, "Reads & writes to", "TypeORM")
+    Rel(wa, spa, "Delivers")
+    Rel(spa, api, "Uses", "JSON/HTTPS")
+}
+
+Rel(pbc, wa, "Uses", "HTTPS")
+Rel(pbc, spa, "Uses")
+
+@enduml
