@@ -1,0 +1,70 @@
+@startuml DiagramClass
+    class User {
+      -String name
+      -String phone
+      -String email
+      -String password
+
+      +String Profile()
+    }
+
+    class Entrepreneur extends User {
+      -String cnpj
+      +String create()
+      +String update()
+    }
+
+    class Client extends User {
+      -String cpf
+      +String create()
+      +String update()
+      +String historic()
+    }
+
+
+    class Service {
+      -String name
+      -String description
+      -Number price
+      -String categoryId
+      -String entrepreneur
+      -Boolean active
+
+      +String create()
+      +String update()
+      +String findAll()
+      +String findID()
+      +String findEntrepreneur()
+    }
+
+    Entrepreneur "0..*" - "1..1" Service
+
+    enum Status{
+      Active
+      Inactive
+    }
+
+    class Category {
+      -String name
+
+      +String findAll()
+      +String findID()
+    }
+
+    Service "1..1" - "0..*" Category
+
+    class Communication{
+      -String observation 
+      -String clientID
+      -String servicoID
+
+      +String create()
+      +Stirng findAll()
+      +String findID()
+      +Void delete()
+    }
+
+    Client "0..*" - "1..1" Communication
+    Communication "0..*" - "1..1" Service
+    
+@enduml
