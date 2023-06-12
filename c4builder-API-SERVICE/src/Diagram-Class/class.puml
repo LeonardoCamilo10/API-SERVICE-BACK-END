@@ -2,7 +2,7 @@
     interface User {
       -String name
       -String phone
-      -String email
+      -String mail
       -String password
     }
 
