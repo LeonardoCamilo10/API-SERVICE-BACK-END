@@ -1,11 +1,9 @@
 @startuml DiagramClass
-    class User {
+    interface User {
       -String name
       -String phone
       -String email
       -String password
-
-      +String Profile()
     }
 
     class Entrepreneur extends User {
