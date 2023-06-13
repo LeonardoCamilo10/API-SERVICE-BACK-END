@@ -23,4 +23,11 @@ export class ClientService {
     const client = this.repo.create(body);
     return await this.repo.save(client);
   }
+
+  async find(id: string) {
+    const client = await this.repo.find({ where: { id } });
+    if (client.length === 0) return 'Not found';
+
+    return client;
+  }
 }

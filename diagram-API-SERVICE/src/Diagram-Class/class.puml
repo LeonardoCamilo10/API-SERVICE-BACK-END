@@ -9,7 +9,10 @@
     class Entrepreneur extends User {
       -String cnpj
       +String create()
+      +String historic()
       +String update()
+      +String Profile()
+
     }
 
     class Client extends User {
@@ -17,6 +20,7 @@
       +String create()
       +String update()
       +String historic()
+      +String Profile()
     }
 
     class Service {
