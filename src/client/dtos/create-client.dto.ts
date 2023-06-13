@@ -2,7 +2,7 @@ import {
   IsNotEmpty,
   MinLength,
   IsEmail,
-  IsEmpty,
+  IsOptional,
   IsString,
 } from 'class-validator';
 import { UserInterface } from '../../interfaces/user.interface';
@@ -18,7 +18,7 @@ export class createClientDTO implements UserInterface {
   cpf: string;
 
   @MinLength(8)
-  @IsEmpty()
+  @IsOptional()
   phone: string;
 
   @IsEmail()
