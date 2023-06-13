@@ -22,7 +22,7 @@ export class ClientEntity implements UserInterface {
   cpf: string;
 
   @Column()
-  mail: string;
+  email: string;
 
   @Column()
   password: string;
