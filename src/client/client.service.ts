@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClientEntity } from './client.entity';
 import { Repository } from 'typeorm';
+import { hashPassword } from 'src/util/func-password.util';
 
 @Injectable()
 export class ClientService {
@@ -20,8 +21,13 @@ export class ClientService {
     const validCpf = await this.repo.find({ where: { cpf } });
     if (validCpf.length !== 0) return 'Exist cpf';
 
+    body['password'] = await hashPassword(body['password']);
+
     const client = this.repo.create(body);
-    return await this.repo.save(client);
+    await this.repo.save(client);
+
+    client['password'] = undefined;
+    return client;
   }
 
   async findOne(id: string) {

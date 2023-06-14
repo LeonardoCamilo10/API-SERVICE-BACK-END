@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { UserInterface } from 'src/interfaces/user.interface';
 import {
   Column,
@@ -24,7 +25,8 @@ export class ClientEntity implements UserInterface {
   @Column()
   email: string;
 
-  @Column()
+  @Exclude({ toPlainOnly: true })
+  @Column({ select: false })
   password: string;
 
   @CreateDateColumn({ name: 'created_At', select: false })
