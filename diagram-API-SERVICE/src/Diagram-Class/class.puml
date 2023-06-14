@@ -9,7 +9,6 @@
     class Entrepreneur extends User {
       -String cnpj
       +String create()
-      +String historic()
       +String update()
       +String Profile()
 
@@ -19,7 +18,6 @@
       -String cpf
       +String create()
       +String update()
-      +String historic()
       +String Profile()
     }
 
@@ -36,6 +34,7 @@
       +String findAll()
       +String findID()
       +String findEntrepreneur()
+      +String findClient()
     }
 
     Entrepreneur "0..*" - "1..1" Service
