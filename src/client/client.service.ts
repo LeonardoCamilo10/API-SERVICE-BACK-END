@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClientEntity } from './client.entity';
 import { Repository } from 'typeorm';
@@ -15,11 +19,13 @@ export class ClientService {
   async create(body: object) {
     const email = body['email'];
     const validEmail = await this.repo.find({ where: { email } });
-    if (validEmail.length !== 0) return 'Exist email';
+    if (validEmail.length !== 0)
+      throw new BadRequestException('the email already exists');
 
     const cpf = body['cpf'];
     const validCpf = await this.repo.find({ where: { cpf } });
-    if (validCpf.length !== 0) return 'Exist cpf';
+    if (validCpf.length !== 0)
+      throw new BadRequestException('the cpf already exists');
 
     body['password'] = await hashPassword(body['password']);
 
@@ -32,7 +38,7 @@ export class ClientService {
 
   async findOne(id: string) {
     const client = await this.repo.findOne({ where: { id } });
-    if (!client) return 'Not found';
+    if (!client) throw new NotFoundException('Not Found User');
 
     return client;
   }
@@ -44,7 +50,7 @@ export class ClientService {
       const cpf = body['cpf'];
       const validCpf = await this.repo.find({ where: { cpf } });
       if (validCpf.length !== 0 && findClient['id'] !== validCpf['id'])
-        return 'Exist cpf';
+        throw new BadRequestException('the cpf already exists');
     }
 
     const client = Object.assign(findClient, body);
