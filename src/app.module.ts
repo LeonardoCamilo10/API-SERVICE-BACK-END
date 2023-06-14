@@ -5,6 +5,8 @@ import { ClientController } from './client/client.controller';
 import { ClientModule } from './client/client.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EntrepreneurController } from './entrepreneur/entrepreneur.controller';
+import { EntrepreneurModule } from './entrepreneur/entrepreneur.module';
 
 @Module({
   imports: [
@@ -20,8 +22,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
     }),
     ClientModule,
+    EntrepreneurModule,
   ],
-  controllers: [AppController, ClientController],
+  controllers: [AppController, ClientController, EntrepreneurController],
   providers: [AppService],
 })
 export class AppModule {}
