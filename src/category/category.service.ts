@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryEntity } from './category.entity';
@@ -21,5 +25,12 @@ export class CategoryService {
     body['name'] = name;
     const category = this.repo.create(body);
     return await this.repo.save(category);
+  }
+
+  async findOne(id: string) {
+    const category = await this.repo.findOne({ where: { id } });
+    if (!category) throw new NotFoundException('Not Found Category');
+
+    return category;
   }
 }
