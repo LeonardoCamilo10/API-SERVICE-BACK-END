@@ -47,6 +47,8 @@
     class Category {
       -String name
 
+      +String create()
+      +String update()
       +String findAll()
       +String findID()
     }
