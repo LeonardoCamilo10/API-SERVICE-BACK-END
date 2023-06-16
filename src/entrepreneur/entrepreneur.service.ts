@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntrepreneurEntity } from './entrepreneur.entity';
 import { Repository } from 'typeorm';
@@ -30,6 +30,13 @@ export class EntrepreneurService {
     await this.repo.save(entrepreneur);
 
     entrepreneur['password'] = undefined;
+    return entrepreneur;
+  }
+
+  async findOne(id: string) {
+    const entrepreneur = await this.repo.findOne({ where: { id } });
+    if (!entrepreneur) throw new NotFoundException('Not Found User');
+
     return entrepreneur;
   }
 }
