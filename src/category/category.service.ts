@@ -33,4 +33,12 @@ export class CategoryService {
 
     return category;
   }
+
+  async find() {
+    const category = await this.repo.find();
+    if (category.length === 0)
+      throw new NotFoundException('Not Found Category´s');
+
+    return category;
+  }
 }
