@@ -9,6 +9,8 @@ import { EntrepreneurController } from './entrepreneur/entrepreneur.controller';
 import { EntrepreneurModule } from './entrepreneur/entrepreneur.module';
 import { CategoryController } from './category/category.controller';
 import { CategoryModule } from './category/category.module';
+import { ServiceEntrepreneurController } from './service_entrepreneur/service_entrepreneur.controller';
+import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrepreneur.module';
 
 @Module({
   imports: [
@@ -26,12 +28,14 @@ import { CategoryModule } from './category/category.module';
     ClientModule,
     EntrepreneurModule,
     CategoryModule,
+    ServiceEntrepreneurModule,
   ],
   controllers: [
     AppController,
     ClientController,
     EntrepreneurController,
     CategoryController,
+    ServiceEntrepreneurController,
   ],
   providers: [AppService],
 })
