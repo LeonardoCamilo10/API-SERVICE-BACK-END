@@ -23,8 +23,8 @@ export class ClientService {
       throw new BadRequestException('the email already exists');
 
     const cpf = body['cpf'];
-    const validCpf = await this.repo.find({ where: { cpf } });
-    if (validCpf.length !== 0)
+    const existCpf = await this.repo.find({ where: { cpf } });
+    if (existCpf.length !== 0)
       throw new BadRequestException('the cpf already exists');
 
     body['password'] = await hashPassword(body['password']);
@@ -48,8 +48,9 @@ export class ClientService {
 
     if (body['cpf']) {
       const cpf = body['cpf'];
-      const validCpf = await this.repo.find({ where: { cpf } });
-      if (validCpf.length !== 0 && findClient['id'] !== validCpf['id'])
+
+      const existCpf = await this.repo.find({ where: { cpf } });
+      if (existCpf.length !== 0 && existCpf[0].id !== id)
         throw new BadRequestException('the cpf already exists');
     }
 

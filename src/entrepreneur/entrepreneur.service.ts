@@ -24,8 +24,8 @@ export class EntrepreneurService {
       throw new BadRequestException('the email already exists');
 
     const cnpj = body['cnpj'];
-    const validCnpj = await this.repo.find({ where: { cnpj } });
-    if (validCnpj.length !== 0)
+    const existCnpj = await this.repo.find({ where: { cnpj } });
+    if (existCnpj.length !== 0)
       throw new BadRequestException('the cnpj already exists');
 
     body['password'] = await hashPassword(body['password']);
@@ -49,9 +49,9 @@ export class EntrepreneurService {
 
     if (body['cnpj']) {
       const cnpj = body['cnpj'];
-      const validCnpj = await this.repo.find({ where: { cnpj } });
+      const existCnpj = await this.repo.find({ where: { cnpj } });
 
-      if (validCnpj.length !== 0 && findEntrepreneur['id'] !== validCnpj[0].id)
+      if (existCnpj.length !== 0 && existCnpj[0].id !== id)
         throw new BadRequestException('the cnpj already exists');
     }
 
