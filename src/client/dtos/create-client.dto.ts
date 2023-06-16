@@ -6,7 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 import { UserInterface } from '../../interfaces/user.interface';
-import { IsEqualPassword } from '../decorators/IsEqualPassword.decorator';
+import { IsEqualPassword } from 'src/decorators/IsEqualPassword.decorator';
 
 export class createClientDTO implements UserInterface {
   @IsString()

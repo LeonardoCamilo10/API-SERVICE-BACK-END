@@ -1,4 +1,3 @@
-import { UserInterface } from 'src/interfaces/user.interface';
 import {
   Column,
   CreateDateColumn,
@@ -6,9 +5,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserInterface } from 'src/interfaces/user.interface';
 
-@Entity({ name: 'client' })
-export class ClientEntity implements UserInterface {
+@Entity({ name: 'entrepreneur' })
+export class EntrepreneurEntity implements UserInterface {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -19,7 +19,7 @@ export class ClientEntity implements UserInterface {
   phone: string;
 
   @Column()
-  cpf: string;
+  cnpj: string;
 
   @Column()
   email: string;
