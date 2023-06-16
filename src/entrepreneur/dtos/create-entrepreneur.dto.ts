@@ -13,7 +13,7 @@ export class createEntrepreneurDTO implements UserInterface {
   @IsNotEmpty()
   name: string;
 
-  @MinLength(11)
+  @MinLength(14)
   @IsNotEmpty()
   cnpj: string;
 

@@ -5,7 +5,7 @@ export class updateEntrepreneurDTO {
   @IsOptional()
   name: string;
 
-  @MinLength(11)
+  @MinLength(14)
   @IsOptional()
   cnpj: string;
 
