@@ -1,13 +1,5 @@
 import { ServiceEntrepreneurEntity } from 'src/service_entrepreneur/service_entrepreneur.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'category' })
 export class CategoryEntity {

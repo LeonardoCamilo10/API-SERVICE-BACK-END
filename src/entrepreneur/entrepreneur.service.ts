@@ -38,6 +38,7 @@ export class EntrepreneurService {
   }
 
   async findOne(id: string) {
+    if (!id) throw new BadRequestException('Id is obrigatory');
     const entrepreneur = await this.repo.findOne({ where: { id } });
     if (!entrepreneur) throw new NotFoundException('Not Found User');
 

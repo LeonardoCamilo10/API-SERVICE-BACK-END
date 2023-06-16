@@ -30,9 +30,9 @@ export class ServiceEntrepreneurEntity {
   @JoinColumn()
   categoryId: CategoryEntity;
 
-  @OneToOne(() => EntrepreneurEntity, () => ServiceEntrepreneurEntity)
+  @ManyToOne(() => EntrepreneurEntity, () => ServiceEntrepreneurEntity)
   @JoinColumn()
-  entrepreneur: EntrepreneurEntity;
+  entrepreneurId: EntrepreneurEntity;
 
   @Column()
   active: string;

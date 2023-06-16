@@ -17,7 +17,7 @@ export class UpdateServiceEnpretenuerDTO {
   categoryId: string;
 
   @IsOptional()
-  entrepreneur: string;
+  entrepreneurId: string;
 
   @IsOptional()
   active: boolean;
