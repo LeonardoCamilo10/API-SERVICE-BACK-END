@@ -39,10 +39,10 @@
 
     Entrepreneur "0..*" - "1..1" Service
 
-    enum Status{
-      Active
-      Inactive
-    }
+    ' enum Status{
+    '   Active
+    '   Inactive
+    ' }
 
     class Category {
       -String name
