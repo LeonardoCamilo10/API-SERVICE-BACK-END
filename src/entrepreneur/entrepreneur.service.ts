@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntrepreneurEntity } from './entrepreneur.entity';
 import { Repository } from 'typeorm';
@@ -38,5 +42,21 @@ export class EntrepreneurService {
     if (!entrepreneur) throw new NotFoundException('Not Found User');
 
     return entrepreneur;
+  }
+
+  async update(body: object, id: string) {
+    const findEntrepreneur = await this.findOne(id);
+
+    if (body['cnpj']) {
+      const cnpj = body['cnpj'];
+      const validCnpj = await this.repo.find({ where: { cnpj } });
+
+      if (validCnpj.length !== 0 && findEntrepreneur['id'] !== validCnpj[0].id)
+        throw new BadRequestException('the cnpj already exists');
+    }
+
+    const client = Object.assign(findEntrepreneur, body);
+
+    return this.repo.save(client);
   }
 }

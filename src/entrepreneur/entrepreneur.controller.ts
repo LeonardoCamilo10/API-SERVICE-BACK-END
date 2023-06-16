@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseFilters,
+} from '@nestjs/common';
 import { EntrepreneurService } from './entrepreneur.service';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 import { createEntrepreneurDTO } from './dtos/create-entrepreneur.dto';
@@ -19,8 +27,8 @@ export class EntrepreneurController {
     return await this.entrepreneurService.findOne(id);
   }
 
-  // @Put('update/:id')
-  // async update(@Body() body: updateEntrepreneurDTO, @Param('id') id: string) {
-  //   return await this.entrepreneurService.update(body, id);
-  // }
+  @Put('update/:id')
+  async update(@Body() body: updateEntrepreneurDTO, @Param('id') id: string) {
+    return await this.entrepreneurService.update(body, id);
+  }
 }
