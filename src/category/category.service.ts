@@ -41,4 +41,17 @@ export class CategoryService {
 
     return category;
   }
+
+  async update(id: string, body: object) {
+    const findCategory = await this.findOne(id);
+
+    const name = body['name'].toUpperCase();
+    const existName = await this.repo.find({ where: { name } });
+    if (existName.length !== 0 && existName[0].id !== id)
+      throw new BadRequestException('the category already exists');
+
+    findCategory['name'] = name;
+
+    return await this.repo.save(findCategory);
+  }
 }

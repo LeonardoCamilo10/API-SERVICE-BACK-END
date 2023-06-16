@@ -9,8 +9,7 @@ import {
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
-import { CategoryDTO, createCategoryDTO } from './dtos/category.dto';
-import { updateCategoryDTO } from './dtos/update-category.dto';
+import { CategoryDTO } from './dtos/category.dto';
 
 @Controller('/api/v1/category')
 export class CategoryController {
