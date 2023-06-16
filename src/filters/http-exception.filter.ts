@@ -23,7 +23,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
-    const message = exception.message;
+    const message = exception['response'].message;
     const error = this.nameErrors(exception.name);
 
     response.status(status).json({

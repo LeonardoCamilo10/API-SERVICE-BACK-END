@@ -16,8 +16,8 @@ import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
-  @Post('signup')
   @UseFilters(new HttpExceptionFilter())
+  @Post('signup')
   async create(@Body() body: createClientDTO) {
     return await this.clientService.create(body);
   }
