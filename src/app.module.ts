@@ -27,7 +27,12 @@ import { CategoryModule } from './category/category.module';
     EntrepreneurModule,
     CategoryModule,
   ],
-  controllers: [AppController, ClientController, EntrepreneurController, CategoryController],
+  controllers: [
+    AppController,
+    ClientController,
+    EntrepreneurController,
+    CategoryController,
+  ],
   providers: [AppService],
 })
 export class AppModule {}
