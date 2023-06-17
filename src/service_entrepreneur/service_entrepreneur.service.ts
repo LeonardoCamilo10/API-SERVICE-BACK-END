@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { ServiceEntrepreneurEntity } from './service_entrepreneur.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -29,4 +33,26 @@ export class ServiceEntrepreneurService {
     const service = this.repo.create(body);
     return await this.repo.save(service);
   }
+
+  async findOne(id: string) {
+    if (!id) throw new BadRequestException('Id is obrigatory');
+    const service = await this.repo.findOne({ where: { id } });
+    if (!service) throw new NotFoundException('Not Found Service');
+
+    return service;
+  }
+
+  async find() {
+    const service = await this.repo.find();
+    if (service.length === 0)
+      throw new NotFoundException('Not Found Service´s');
+
+    return service;
+  }
+  // +String create() Ok
+  // +String update() Ok
+  // +String findAll() Ok
+  // +String findID()
+  // +String findEntrepreneur()
+  // +String findCategory()
 }

@@ -26,11 +26,15 @@ export class ServiceEntrepreneurEntity {
   @Column()
   price: number;
 
-  @ManyToOne(() => CategoryEntity, () => ServiceEntrepreneurEntity)
+  @ManyToOne(() => CategoryEntity, () => ServiceEntrepreneurEntity, {
+    eager: true,
+  })
   @JoinColumn()
   categoryId: CategoryEntity;
 
-  @ManyToOne(() => EntrepreneurEntity, () => ServiceEntrepreneurEntity)
+  @ManyToOne(() => EntrepreneurEntity, () => ServiceEntrepreneurEntity, {
+    eager: true,
+  })
   @JoinColumn()
   entrepreneurId: EntrepreneurEntity;
 
