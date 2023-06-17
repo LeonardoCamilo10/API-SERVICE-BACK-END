@@ -42,6 +42,20 @@ export class ServiceEntrepreneurService {
     return service;
   }
 
+  async findCategory(categoryId: string) {
+    if (!categoryId) throw new BadRequestException('categoryId is obrigatory');
+    const service = await this.repo.find({
+      where: {
+        categoryId: {
+          id: categoryId,
+        },
+      },
+    });
+    if (!service) throw new NotFoundException('Not Found Service');
+
+    return service;
+  }
+
   async find() {
     const service = await this.repo.find();
     if (service.length === 0)
@@ -50,9 +64,9 @@ export class ServiceEntrepreneurService {
     return service;
   }
   // +String create() Ok
-  // +String update() Ok
+  // +String update()
   // +String findAll() Ok
-  // +String findID()
+  // +String findID() ok
   // +String findEntrepreneur()
-  // +String findCategory()
+  // +String findCategory() ok
 }

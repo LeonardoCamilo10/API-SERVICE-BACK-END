@@ -24,4 +24,9 @@ export class ServiceEntrepreneurController {
   async find() {
     return await this.serviceServiceEntrepreneur.find();
   }
+
+  @Get('category/:id')
+  async findCategory(@Param('id') id: string) {
+    return await this.serviceServiceEntrepreneur.findCategory(id);
+  }
 }
