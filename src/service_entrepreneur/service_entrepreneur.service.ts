@@ -51,7 +51,24 @@ export class ServiceEntrepreneurService {
         },
       },
     });
-    if (!service) throw new NotFoundException('Not Found Service');
+
+    if (service.length === 0) throw new NotFoundException('Not Found Service');
+
+    return service;
+  }
+
+  async findEntrepreneur(entrepreneurId: string) {
+    if (!entrepreneurId)
+      throw new BadRequestException('entrepreneurId is obrigatory');
+    const service = await this.repo.find({
+      where: {
+        entrepreneurId: {
+          id: entrepreneurId,
+        },
+      },
+    });
+
+    if (service.length === 0) throw new NotFoundException('Not Found Service');
 
     return service;
   }
@@ -63,10 +80,22 @@ export class ServiceEntrepreneurService {
 
     return service;
   }
+
+  async update(id: string, body: object) {
+    const findService = await this.repo.findOne({ where: { id } });
+
+    if (body['categoryId']) {
+      const category = await this.serviceCategory.findOne(body['categoryId']);
+
+      findService['categoryId'] = category;
+    }
+
+    return await this.repo.save(findService);
+  }
   // +String create() Ok
   // +String update()
   // +String findAll() Ok
   // +String findID() ok
-  // +String findEntrepreneur()
+  // +String findEntrepreneur() Ok
   // +String findCategory() ok
 }
