@@ -92,10 +92,4 @@ export class ServiceEntrepreneurService {
 
     return await this.repo.save(findService);
   }
-  // +String create() Ok
-  // +String update()
-  // +String findAll() Ok
-  // +String findID() ok
-  // +String findEntrepreneur() Ok
-  // +String findCategory() ok
 }

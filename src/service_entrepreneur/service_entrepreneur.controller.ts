@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Param, Post, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseFilters,
+} from '@nestjs/common';
 import { ServiceEntrepreneurService } from './service_entrepreneur.service';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 import { CreateServiceEnpretenuerDTO } from './dtos/create-service_entrepreneur.dto';
+import { UpdateServiceEnpretenuerDTO } from './dtos/update-service_entrepreneur.dto';
 
 @Controller('/api/v1/service')
 export class ServiceEntrepreneurController {
@@ -33,5 +42,13 @@ export class ServiceEntrepreneurController {
   @Get('entrepreneur/:id')
   async findEntrepreneur(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findEntrepreneur(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() body: UpdateServiceEnpretenuerDTO,
+  ) {
+    return await this.serviceServiceEntrepreneur.update(id, body);
   }
 }
