@@ -34,7 +34,7 @@
       +String findAll()
       +String findID()
       +String findEntrepreneur()
-      +String findClient()
+      +String findCategory()      
     }
 
     Entrepreneur "0..*" - "1..1" Service
