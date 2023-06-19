@@ -22,16 +22,19 @@ export class CategoryController {
   }
 
   @Get(':id')
+  @UseFilters(new HttpExceptionFilter())
   async findOne(@Param('id') id: string) {
     return await this.categoryService.findOne(id);
   }
 
   @Get()
+  @UseFilters(new HttpExceptionFilter())
   async find() {
     return await this.categoryService.find();
   }
 
   @Put(':id')
+  @UseFilters(new HttpExceptionFilter())
   async update(@Param('id') id: string, @Body() body: CategoryDTO) {
     return await this.categoryService.update(id, body);
   }

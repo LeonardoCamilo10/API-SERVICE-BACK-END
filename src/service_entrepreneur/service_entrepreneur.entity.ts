@@ -1,4 +1,5 @@
 import { CategoryEntity } from 'src/category/category.entity';
+import { CommunicationEntity } from 'src/communication/communication.entity';
 import { EntrepreneurEntity } from 'src/entrepreneur/entrepreneur.entity';
 
 import {
@@ -7,6 +8,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -40,6 +42,9 @@ export class ServiceEntrepreneurEntity {
 
   @Column()
   active: string;
+
+  @OneToMany(() => CommunicationEntity, () => ServiceEntrepreneurEntity)
+  communicationId: CommunicationEntity[];
 
   @CreateDateColumn({ name: 'created_At', select: false })
   createdAt: Date;
