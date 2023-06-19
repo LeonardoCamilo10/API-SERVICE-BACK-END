@@ -11,6 +11,9 @@ import { CategoryController } from './category/category.controller';
 import { CategoryModule } from './category/category.module';
 import { ServiceEntrepreneurController } from './service_entrepreneur/service_entrepreneur.controller';
 import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrepreneur.module';
+import { CommunicationController } from './communication/communication.controller';
+import { CommunicationService } from './communication/communication.service';
+import { CommunicationModule } from './communication/communication.module';
 
 @Module({
   imports: [
@@ -29,6 +32,7 @@ import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrep
     EntrepreneurModule,
     CategoryModule,
     ServiceEntrepreneurModule,
+    CommunicationModule,
   ],
   controllers: [
     AppController,
@@ -36,7 +40,8 @@ import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrep
     EntrepreneurController,
     CategoryController,
     ServiceEntrepreneurController,
+    CommunicationController,
   ],
-  providers: [AppService],
+  providers: [AppService, CommunicationService],
 })
 export class AppModule {}
