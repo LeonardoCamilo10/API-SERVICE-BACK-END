@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CommunicationEntity } from './communication.entity';
@@ -28,5 +28,20 @@ export class CommunicationService {
 
     const communication = this.repo.create(body);
     return await this.repo.save(communication);
+  }
+
+  async findOne(id: string) {
+    const communication = await this.repo.findOne({ where: { id } });
+
+    if (!communication) throw new NotFoundException('Not found Communication');
+    return communication;
+  }
+
+  async delete(id: string) {
+    const communication = await this.repo.findOne({ where: { id } });
+
+    if (!communication) throw new NotFoundException('Not found Communication');
+
+    await this.repo.remove(communication);
   }
 }

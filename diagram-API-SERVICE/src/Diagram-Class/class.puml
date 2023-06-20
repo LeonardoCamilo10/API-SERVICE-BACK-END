@@ -61,7 +61,6 @@
       -String servicoID
 
       +String create()
-      +Stirng findAll()
       +String findID()
       +Void delete()
     }
