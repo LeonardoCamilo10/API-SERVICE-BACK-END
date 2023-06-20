@@ -27,20 +27,23 @@ export class ServiceEntrepreneurController {
     return await this.serviceServiceEntrepreneur.create(body);
   }
 
-  @Get(':id')
   @UseFilters(new HttpExceptionFilter())
+  @UseGuards(AuthGuard('jwt'))
+  @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findOne(id);
   }
 
-  @Get()
   @UseFilters(new HttpExceptionFilter())
+  @UseGuards(AuthGuard('jwt'))
+  @Get()
   async find() {
     return await this.serviceServiceEntrepreneur.find();
   }
 
-  @Get('category/:id')
   @UseFilters(new HttpExceptionFilter())
+  @UseGuards(AuthGuard('jwt'))
+  @Get('category/:id')
   async findCategory(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findCategory(id);
   }
@@ -52,9 +55,9 @@ export class ServiceEntrepreneurController {
     return await this.serviceServiceEntrepreneur.findEntrepreneur(id);
   }
 
+  @UseFilters(new HttpExceptionFilter())
   @UseGuards(AuthGuard('jwt-entrepreneur'))
   @Put(':id')
-  @UseFilters(new HttpExceptionFilter())
   async update(
     @Param('id') id: string,
     @Body() body: UpdateServiceEnpretenuerDTO,

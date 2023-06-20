@@ -26,10 +26,24 @@ export class CommunicationController {
   }
 
   @UseFilters(new HttpExceptionFilter())
-  @UseGuards(AuthGuard('jwt-client'))
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.serviceCommunication.findOne(id);
+  }
+
+  @UseFilters(new HttpExceptionFilter())
+  @UseGuards(AuthGuard('jwt-entrepreneur'))
+  @Get('/entrepreneur/:id')
+  async findEntrepreneur(@Param('id') id: string) {
+    return await this.serviceCommunication.findEntrepreneur(id);
+  }
+
+  @UseFilters(new HttpExceptionFilter())
+  @UseGuards(AuthGuard('jwt-client'))
+  @Get('client/:id')
+  async findClient(@Param('id') id: string) {
+    return await this.serviceCommunication.findClient(id);
   }
 
   @UseFilters(new HttpExceptionFilter())

@@ -19,7 +19,7 @@ export class JwtClientStrategy extends PassportStrategy(
 
   async validate(payload: any) {
     if (payload.type == 'client') {
-      const findClient = this.clientService.findOne(payload.sub);
+      const findClient = await this.clientService.findOne(payload.sub);
       if (findClient) return { id: payload.sub, email: payload.email };
     }
   }
@@ -40,8 +40,28 @@ export class JwtEntrepreneurStrategy extends PassportStrategy(
 
   async validate(payload: any) {
     if (payload.type == 'entrepreneur') {
-      const findEntrepreneur = this.entrepreneurService.findOne(payload.sub);
+      const findEntrepreneur = await this.entrepreneurService.findOne(
+        payload.sub,
+      );
       if (findEntrepreneur) return { id: payload.sub, email: payload.email };
     }
+  }
+}
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  constructor(
+    private readonly clientService: ClientService,
+    private readonly entrepreneurService: EntrepreneurService,
+  ) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: process.env.JWT_SECRET_KEY,
+    });
+  }
+
+  async validate(payload: any) {
+    return { id: payload.sub, email: payload.email };
   }
 }

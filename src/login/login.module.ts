@@ -13,6 +13,7 @@ import {
 import {
   JwtClientStrategy,
   JwtEntrepreneurStrategy,
+  JwtStrategy,
 } from './strategies/jwt.strategy';
 // import {JwtStra} from '@nestjs/jwt';
 
@@ -34,6 +35,7 @@ import {
     LocalEntrepreneurStrategy,
     JwtClientStrategy,
     JwtEntrepreneurStrategy,
+    JwtStrategy,
   ],
   controllers: [LoginController],
 })

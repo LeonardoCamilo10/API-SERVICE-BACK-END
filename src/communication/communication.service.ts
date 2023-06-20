@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CommunicationEntity } from './communication.entity';
@@ -34,6 +38,40 @@ export class CommunicationService {
     const communication = await this.repo.findOne({ where: { id } });
 
     if (!communication) throw new NotFoundException('Not found Communication');
+    return communication;
+  }
+
+  async findEntrepreneur(entrepreneurId: string) {
+    if (!entrepreneurId) throw new BadRequestException('Id is obrigatory');
+    const communication = await this.repo.find({
+      where: {
+        serviceId: {
+          entrepreneurId: {
+            id: entrepreneurId,
+          },
+        },
+      },
+    });
+
+    if (communication.length === 0)
+      throw new NotFoundException('Not Found communication');
+
+    return communication;
+  }
+
+  async findClient(clientId: string) {
+    if (!clientId) throw new BadRequestException('Id is obrigatory');
+    const communication = await this.repo.find({
+      where: {
+        clientId: {
+          id: clientId,
+        },
+      },
+    });
+
+    if (communication.length === 0)
+      throw new NotFoundException('Not Found communication');
+
     return communication;
   }
 
