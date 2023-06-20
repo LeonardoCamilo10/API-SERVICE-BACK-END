@@ -16,18 +16,20 @@ import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
-  @UseFilters(new HttpExceptionFilter())
   @Post('signup')
+  @UseFilters(new HttpExceptionFilter())
   async create(@Body() body: createClientDTO) {
     return await this.clientService.create(body);
   }
 
   @Get('profile/:id')
+  @UseFilters(new HttpExceptionFilter())
   async find(@Param('id') id: string) {
     return await this.clientService.findOne(id);
   }
 
   @Put('update/:id')
+  @UseFilters(new HttpExceptionFilter())
   async update(@Body() body: updateClientDTO, @Param('id') id: string) {
     return await this.clientService.update(body, id);
   }

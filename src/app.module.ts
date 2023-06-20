@@ -12,7 +12,6 @@ import { CategoryModule } from './category/category.module';
 import { ServiceEntrepreneurController } from './service_entrepreneur/service_entrepreneur.controller';
 import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrepreneur.module';
 import { CommunicationController } from './communication/communication.controller';
-import { CommunicationService } from './communication/communication.service';
 import { CommunicationModule } from './communication/communication.module';
 
 @Module({

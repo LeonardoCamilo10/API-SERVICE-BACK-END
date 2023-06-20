@@ -23,11 +23,13 @@ export class EntrepreneurController {
   }
 
   @Get('profile/:id')
+  @UseFilters(new HttpExceptionFilter())
   async find(@Param('id') id: string) {
     return await this.entrepreneurService.findOne(id);
   }
 
   @Put('update/:id')
+  @UseFilters(new HttpExceptionFilter())
   async update(@Body() body: updateEntrepreneurDTO, @Param('id') id: string) {
     return await this.entrepreneurService.update(body, id);
   }

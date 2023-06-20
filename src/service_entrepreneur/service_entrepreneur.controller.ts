@@ -25,26 +25,31 @@ export class ServiceEntrepreneurController {
   }
 
   @Get(':id')
+  @UseFilters(new HttpExceptionFilter())
   async findOne(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findOne(id);
   }
 
   @Get()
+  @UseFilters(new HttpExceptionFilter())
   async find() {
     return await this.serviceServiceEntrepreneur.find();
   }
 
   @Get('category/:id')
+  @UseFilters(new HttpExceptionFilter())
   async findCategory(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findCategory(id);
   }
 
   @Get('entrepreneur/:id')
+  @UseFilters(new HttpExceptionFilter())
   async findEntrepreneur(@Param('id') id: string) {
     return await this.serviceServiceEntrepreneur.findEntrepreneur(id);
   }
 
   @Put(':id')
+  @UseFilters(new HttpExceptionFilter())
   async update(
     @Param('id') id: string,
     @Body() body: UpdateServiceEnpretenuerDTO,

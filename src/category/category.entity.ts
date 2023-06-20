@@ -1,5 +1,12 @@
 import { ServiceEntrepreneurEntity } from 'src/service_entrepreneur/service_entrepreneur.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity({ name: 'category' })
 export class CategoryEntity {
@@ -11,4 +18,10 @@ export class CategoryEntity {
 
   @OneToMany(() => ServiceEntrepreneurEntity, () => CategoryEntity)
   serviceId: ServiceEntrepreneurEntity[];
+
+  @CreateDateColumn({ name: 'created_At', select: false })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_At', select: false })
+  updatedAt: Date;
 }
