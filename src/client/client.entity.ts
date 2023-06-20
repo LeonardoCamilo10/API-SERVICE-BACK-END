@@ -26,7 +26,7 @@ export class ClientEntity implements UserInterface {
   @Column()
   email: string;
 
-  @Column({ select: false })
+  @Column()
   password: string;
 
   @OneToMany(() => CommunicationEntity, () => ClientEntity)

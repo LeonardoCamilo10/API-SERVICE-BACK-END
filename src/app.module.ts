@@ -13,6 +13,9 @@ import { ServiceEntrepreneurController } from './service_entrepreneur/service_en
 import { ServiceEntrepreneurModule } from './service_entrepreneur/service_entrepreneur.module';
 import { CommunicationController } from './communication/communication.controller';
 import { CommunicationModule } from './communication/communication.module';
+import { LoginController } from './login/login.controller';
+import { LoginService } from './login/login.service';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
@@ -32,6 +35,7 @@ import { CommunicationModule } from './communication/communication.module';
     CategoryModule,
     ServiceEntrepreneurModule,
     CommunicationModule,
+    LoginModule,
   ],
   controllers: [
     AppController,
@@ -40,6 +44,7 @@ import { CommunicationModule } from './communication/communication.module';
     CategoryController,
     ServiceEntrepreneurController,
     CommunicationController,
+    LoginController,
   ],
   providers: [AppService],
 })

@@ -6,11 +6,13 @@ import {
   Post,
   Put,
   UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { createClientDTO } from './dtos/create-client.dto';
 import { ClientService } from './client.service';
 import { updateClientDTO } from './dtos/update-client.dto';
 import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/api/v1/client')
 export class ClientController {
@@ -22,12 +24,14 @@ export class ClientController {
     return await this.clientService.create(body);
   }
 
-  @Get('profile/:id')
+  @UseGuards(AuthGuard('jwt-client'))
   @UseFilters(new HttpExceptionFilter())
+  @Get('profile/:id')
   async find(@Param('id') id: string) {
     return await this.clientService.findOne(id);
   }
 
+  @UseGuards(AuthGuard('jwt-client'))
   @Put('update/:id')
   @UseFilters(new HttpExceptionFilter())
   async update(@Body() body: updateClientDTO, @Param('id') id: string) {

@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ClientEntity } from './client.entity';
@@ -57,5 +58,13 @@ export class ClientService {
     const client = Object.assign(findClient, body);
 
     return this.repo.save(client);
+  }
+
+  async findOneOrFail(email: string) {
+    const client = await this.repo.findOne({ where: { email } });
+
+    if (!client) throw new UnauthorizedException('Email is incorrect!');
+
+    return client;
   }
 }

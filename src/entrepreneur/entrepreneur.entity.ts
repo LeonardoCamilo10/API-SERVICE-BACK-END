@@ -26,7 +26,7 @@ export class EntrepreneurEntity implements UserInterface {
   @Column()
   email: string;
 
-  @Column({ select: false })
+  @Column()
   password: string;
 
   @OneToMany(() => ServiceEntrepreneurEntity, () => EntrepreneurEntity)
