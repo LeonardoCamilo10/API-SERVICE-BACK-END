@@ -42,6 +42,6 @@ import { CommunicationModule } from './communication/communication.module';
     ServiceEntrepreneurController,
     CommunicationController,
   ],
-  providers: [AppService, CommunicationService],
+  providers: [AppService],
 })
 export class AppModule {}
