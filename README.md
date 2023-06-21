@@ -44,4 +44,4 @@ $ npm run start:prod
 * Class-Validator ⚪
 
 ## Documentation the routes
-Documentation the Postman: (https://documenter.getpostman.com/view/25163546/2s93z58Pap)
+Documentation the Postman: https://documenter.getpostman.com/view/25163546/2s93z58Pap
