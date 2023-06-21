@@ -1,0 +1,27 @@
+@startuml DiagramClass
+   
+    annotation Client
+
+    class ClientController{
+      -ClientService clientService
+      +String Create()
+    }
+
+    class BodyDecorator <<CreateClientDto>> {
+      -String name
+      -String phone
+      -String cpf
+      -String email
+      -String password
+    }
+
+    class ClientService{
+      -Repository repo
+      +String Create()
+    }
+
+    Client --> ClientController
+    BodyDecorator  o-- ClientController
+    ClientController -- ClientService
+  
+@enduml

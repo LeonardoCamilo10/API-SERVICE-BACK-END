@@ -11,7 +11,6 @@
       +String create()
       +String update()
       +String Profile()
-
     }
 
     class Client extends User {
@@ -20,6 +19,21 @@
       +String update()
       +String Profile()
     }
+
+    class Login{
+      -String email
+      -String password
+      +String loginClient()
+      +String loginEntrepreneur()
+    }
+
+    enum Users{
+      Client
+      Entrepreneur
+    }
+
+    Client "1..1" - "1..1" Login
+    Entrepreneur "1..1" - "1..1" Login
 
     class Service {
       -String name
@@ -61,11 +75,14 @@
       -String servicoID
 
       +String create()
-      +String findID()
+      +String findOne()
+      +String findEntrepreneur()
+      +String findClient()
       +Void delete()
     }
 
     Client "0..*" - "1..1" Communication
     Communication "0..*" - "1..1" Service
+    Communication "0..*" - "1..1" Entrepreneur
     
 @enduml

@@ -1,0 +1,54 @@
+@startuml DiagramClass
+   
+    annotation User
+
+    class LoginController{
+      -LoginService loginService
+      +String loginClient()
+      +String loginEntrepreneur()
+    }
+
+
+    class LocalClientStrategy{
+      -LoginService loginService
+      +ClientEntity validate()
+    }
+
+    class LocalEntrepreneurStrategy{
+      -LoginService loginService
+      +EntrepreneurEntity validate()
+    }
+
+    annotation PassportStrategy <<T>>{
+      -T Strategy
+      -String name
+    }
+
+    interface Type{
+      -Any[] args
+    }
+
+    PassportStrategy <|-- LocalClientStrategy
+    PassportStrategy <|-- LocalEntrepreneurStrategy
+    Type <|-- PassportStrategy
+
+    class LoginService{
+      -ClientService clientService
+      -EntrepreneurService entrepreneurService
+      -JwtService jwtService
+
+      +String loginClient()
+      +String loginEntrepreneur()
+      +String ValidateClient()
+      +String ValidateEntrepreneur()
+    }
+
+
+    User --> LoginController
+
+    LoginController ..> LocalClientStrategy 
+    LoginController ..> LocalEntrepreneurStrategy 
+  
+    LoginService -- LoginController
+
+@enduml

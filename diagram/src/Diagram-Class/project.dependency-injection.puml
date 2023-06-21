@@ -1,0 +1,28 @@
+@startuml DiagramClass
+   
+    annotation Client
+
+    class ControllerClient{
+      -ClientService clientService
+      +String Create()
+      +String Update()
+      +String Profile()
+    }
+
+   
+    class ClientService{
+      -Repository repo
+      +String Create()
+      +String Update()
+      +String Profile()
+    }
+
+    class Repository <<ClientEntity>>{
+      +ClientEntiy RepositoryFunction()
+    }
+
+    Client --> ControllerClient
+    ControllerClient -- ClientService
+    ClientService -- Repository
+  
+@enduml
