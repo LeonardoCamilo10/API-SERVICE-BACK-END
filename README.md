@@ -42,3 +42,6 @@ $ npm run start:prod
 * Postgres 🔵
 * JWT.io 🟣
 * Class-Validator ⚪
+
+## Documentation the routes
+Documentation the Postman: (https://documenter.getpostman.com/view/25163546/2s93z58Pap)
